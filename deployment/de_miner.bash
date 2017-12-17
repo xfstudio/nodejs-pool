@@ -19,7 +19,7 @@ fi
 
 if test $( pgrep -f xmrMiner | wc -l ) -eq 0 
 then 
-/home/windy/xmrMinerProject/build/xmrMiner -o stratum+tcp://$POOL_HOST:$POOL_PORT -u $MINER_WALLET -p worker -z 0 -B 
+/home/windy/xmrMinerProject/build/xmrMiner -o stratum+tcp://$POOL_HOST:$POOL_PORT -u $MINER_WALLET -p worker -z 0
 else 
 echo "$(pgrep -f xmrMiner)"
 fi 
