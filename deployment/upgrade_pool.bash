@@ -11,20 +11,20 @@ wget "https://raw.githubusercontent.com/xfstudio/nodejs-pool/master/deployment/$
 mysql -u root --password=$1 < $UPDATE_DIR/$2_pool_config.sql
 echo "Done upgrade pool"
 
-sudo pm2 startOrRestart /usr/local/src/monero/build/release/bin/monero-wallet-rpc --name=moneroWalletRPC --log-date-format="YYYY-MM-DD HH:mm Z" -- --rpc-bind-port 18082 --password-file $HOME_DIR/xmr_wallet_pass --wallet-file /root/xmr_windy_wallet.bin --disable-rpc-login --trusted-daemon
+pm2 start /usr/local/src/monero/build/release/bin/monero-wallet-rpc --name=moneroWalletRPC --log-date-format="YYYY-MM-DD HH:mm Z" -- --rpc-bind-port 18082 --password-file $HOME_DIR/xmr_wallet_pass --wallet-file /root/xmr_windy_wallet.bin --disable-rpc-login --trusted-daemon
 
 echo "restart pool"
 cd $HOME_DIR/nodejs-pool
 git pull origin master
 npm install
 
-pm2 startOrRestart $HOME_DIR/nodejs-pool/init.js --name=blockManager --log-date-format="YYYY-MM-DD HH:mm Z"  -- --module=blockManager
-pm2 startOrRestart $HOME_DIR/nodejs-pool/init.js --name=worker --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=worker
-pm2 startOrRestart $HOME_DIR/nodejs-pool/init.js --name=payments --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=payments
-pm2 startOrRestart $HOME_DIR/nodejs-pool/init.js --name=remoteShare --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=remoteShare
-pm2 startOrRestart $HOME_DIR/nodejs-pool/init.js --name=longRunner --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=longRunner
-pm2 startOrRestart $HOME_DIR/nodejs-pool/init.js --name=pool --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=pool
-pm2 startOrRestart $HOME_DIR/nodejs-pool/init.js --name=api --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=api
+pm2 start $HOME_DIR/nodejs-pool/init.js --name=blockManager --log-date-format="YYYY-MM-DD HH:mm Z"  -- --module=blockManager
+pm2 start $HOME_DIR/nodejs-pool/init.js --name=worker --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=worker
+pm2 start $HOME_DIR/nodejs-pool/init.js --name=payments --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=payments
+pm2 start $HOME_DIR/nodejs-pool/init.js --name=remoteShare --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=remoteShare
+pm2 start $HOME_DIR/nodejs-pool/init.js --name=longRunner --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=longRunner
+pm2 start $HOME_DIR/nodejs-pool/init.js --name=pool --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=pool
+pm2 start $HOME_DIR/nodejs-pool/init.js --name=api --log-date-format="YYYY-MM-DD HH:mm Z" -- --module=api
 
 cd $HOME_DIR/xssminer
 git pull origin master
