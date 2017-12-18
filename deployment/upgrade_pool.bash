@@ -13,6 +13,7 @@ echo "Done upgrade pool"
 
 pm2 start /usr/local/src/monero/build/release/bin/monero-wallet-rpc --name=moneroWalletRPC --log-date-format="YYYY-MM-DD HH:mm Z" -- --rpc-bind-port 18082 --password-file $HOME_DIR/xmr_wallet_pass --wallet-file /root/xmr_windy_wallet.bin --disable-rpc-login --trusted-daemon
 
+/usr/local/src/monero/build/release/bin/monero-wallet-rpc --rpc-bind-port 18082 --password-file /root/xmr_wallet_pass --wallet-file /root/xmr_windy_wallet.bin --disable-rpc-login --trusted-daemon
 echo "restart pool"
 cd $HOME_DIR/nodejs-pool
 git pull origin master
