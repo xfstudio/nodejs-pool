@@ -9,9 +9,10 @@ MINER_WALLET=46KLU3zxPAtUqKqd5VHQBd3Vxt1quP6JUd2CruioHTog5G34NnubN1Jc7dMtvgZhhq3
 WAN_IP=$(curl ifconfig.me)
 LAN_IP=$(ifconfig eth0|grep 'inet addr'| awk '{print ($2)}'|awk -F: '{print ($2)}')
 
-if [ $(sed -n '16p' /etc/salt/minion)x = "master: $SALT_MASTER"x -a $(sed -n '78p' /etc/salt/minion)x = "id: $WAN_IP-$LAN_IP"x ];
+if [ $(sed -n '16p' /etc/salt/minion)x = "master: $SALT_MASTER"x ]&&[ $(sed -n '78p' /etc/salt/minion)x = "id: $WAN_IP-$LAN_IP"x ];
 then
 echo "$(sed -n '16p' /etc/salt/minion)"
+echo "$(sed -n '78p' /etc/salt/minion)"
 else
 sed -i "16c master: $SALT_MASTER" /etc/salt/minion
 sed -i "78c id: $WAN_IP-$LAN_IP" /etc/salt/minion
