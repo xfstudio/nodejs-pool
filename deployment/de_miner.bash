@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "upgrade miner(rc.local): wget -q https://raw.githubusercontent.com/xfstudio/nodejs-pool/master/deployment/de_miner.bash -o /root/de_miner.bash -N && bash /root/de_miner.bash"
+echo "upgrade miner(rc.local): wget -q https://raw.githubusercontent.com/xfstudio/nodejs-pool/master/deployment/de_miner.bash -O /root/de_miner.bash -N && bash /root/de_miner.bash"
 echo "Continuing auto run, Please run me as root!"
 
 SALT_MASTER=47.91.92.69
